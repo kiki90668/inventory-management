@@ -22,7 +22,6 @@ This is an Inventory Management System built with Spring Boot, designed to help 
 - **Exception Handling**:
   - Handles common exceptions like invalid input or product not found, and provides meaningful error messages.
  
-=========================================================
 
 ## Technologies Used
 
@@ -31,9 +30,9 @@ This is an Inventory Management System built with Spring Boot, designed to help 
 - **MySQL**: For storing product data.
 - **Lombok**: For reducing boilerplate code.
 
-=========================================================
 
 ## API Endpoints
+
 GET /products/{id}: Get a product by its ID.
 
 GET /products: Get a list of all products.
@@ -46,9 +45,9 @@ PUT /products/{id}/ship/{quantity}: Ship a product by specifying its ID and the 
 
 DELETE /products/{id}: Delete a product by its ID.
 
-=========================================================
 
 ## Error Handling
+
 400 Bad Request: Returned when there is an issue with the input (e.g., invalid product ID or quantity).
 
 500 Internal Server Error: Returned for unexpected errors.
