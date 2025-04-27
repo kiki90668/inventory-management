@@ -1,0 +1,13 @@
+target/
+
+.idea/
+.vscode/
+
+*.jar
+*.war
+*.ear
+
+.DS_Store
+Thumbs.db
+
+inventory.session.sql
