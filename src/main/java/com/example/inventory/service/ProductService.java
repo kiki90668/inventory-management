@@ -9,8 +9,13 @@ import com.example.inventory.repository.ProductRepository;
 @Service
 public class ProductService {
 
-    @Autowired
+    
     private ProductRepository productRepository;
+
+    @Autowired
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
 
     // Method to get a product by ID
@@ -63,9 +68,11 @@ public class ProductService {
 
     // Method to delete a product
     public void deleteProduct(Long id) {
-        if (productRepository.findById(id).isEmpty()) {
-            throw new IllegalArgumentException("Product not found");
+        if (id == null) {
+            throw new IllegalArgumentException("Product ID cannot be null");
         }
-        productRepository.deleteById(id);
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+        productRepository.delete(product);
     }
 }

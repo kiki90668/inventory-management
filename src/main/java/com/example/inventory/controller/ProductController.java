@@ -31,7 +31,7 @@ public class ProductController {
         return new ApiResponse<>("success", "Products retrieved", products);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ApiResponse<Product> addProduct(@RequestBody Product product) {
         Product saveProduct =  productService.addProduct(product);
         return new ApiResponse<>("success", "Product successfully added", saveProduct);
