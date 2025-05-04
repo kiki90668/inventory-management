@@ -38,23 +38,22 @@ public class SupplierService {
     }
 
 
-    @SuppressWarnings("null")
     public List<Supplier> addSuppliers(List<Supplier> suppliers) {
-        if (suppliers != null && !suppliers.isEmpty()) {
+        if (suppliers == null || suppliers.isEmpty()) {
             throw new IllegalArgumentException("Supplier list cannot be empty");
         }
         return supplierRepository.saveAll(suppliers);
     }
 
     public Supplier updateSupplier(Long id, Supplier supplier) {
-        if (id == null &&  supplier.getId() == null) {
-            throw new IllegalArgumentException("Supplier ID and supplier object cannot be null");
+        if (id == null) {
+            throw new IllegalArgumentException("Supplier ID cannot be null");
         }
-        @SuppressWarnings("null")
         Supplier existingSupplier = supplierRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Supplier not found"));
         existingSupplier.setName(supplier.getName());
         existingSupplier.setContact(supplier.getContact());
+        existingSupplier.setEmail(supplier.getEmail());
         return supplierRepository.save(existingSupplier);
     }
 

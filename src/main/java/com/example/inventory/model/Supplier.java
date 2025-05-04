@@ -19,6 +19,7 @@ public class Supplier {
     private Long id;
 
     private String name;
+    private String email;
     private String contact;
 
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)

@@ -66,6 +66,19 @@ public class ProductService {
         }
     }
 
+    // Method to update a product
+    public Product updateProduct(Long id, Product product) {
+        if (id == null) {
+            throw new IllegalArgumentException("Product ID cannot be null");
+        }
+        Product existingProduct = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+        existingProduct.setName(product.getName());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setQuantity(product.getQuantity());
+        return productRepository.save(existingProduct);
+    }
+
     // Method to delete a product
     public void deleteProduct(Long id) {
         if (id == null) {

@@ -12,13 +12,13 @@ import com.example.inventory.repository.ProductRepository;
 import com.example.inventory.repository.SupplierRepository;
 
 @Service
-public class ProductSupplierService {
+public class SupplierProductService {
 
     private ProductRepository productRepository;
     private SupplierRepository supplierRepository;
 
     @Autowired
-    public ProductSupplierService(ProductRepository productRepository, SupplierRepository supplierRepository) {
+    public SupplierProductService(ProductRepository productRepository, SupplierRepository supplierRepository) {
         this.productRepository = productRepository;
         this.supplierRepository = supplierRepository;
     }
