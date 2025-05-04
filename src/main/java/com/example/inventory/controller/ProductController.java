@@ -11,6 +11,8 @@ import com.example.inventory.model.ApiResponse;
 import com.example.inventory.model.Product;
 import com.example.inventory.service.ProductService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -36,7 +38,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ApiResponse<ProductDTO> addProduct(@RequestBody ProductDTO productDTO) {
+    public ApiResponse<ProductDTO> addProduct(@Valid @RequestBody ProductDTO productDTO) {
         Product Product =  ProductMapper.toEntity(productDTO);
         Product savedProduct = productService.addProduct(Product);
         ProductDTO saveProductDTO = ProductMapper.toDTO(savedProduct); 
@@ -44,7 +46,7 @@ public class ProductController {
     }
 
     @PostMapping("/addList")
-    public ApiResponse<List<ProductDTO>> addProducts(@RequestBody List<ProductDTO> productDTOs) {
+    public ApiResponse<List<ProductDTO>> addProducts(@Valid @RequestBody List<ProductDTO> productDTOs) {
         List<Product> products = ProductMapper.toEntityList(productDTOs);
         List<Product> savedProducts = productService.addProducts(products);
         List<ProductDTO> savedProductDTOs = ProductMapper.toDTOList(savedProducts); 
@@ -59,7 +61,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ApiResponse<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
+    public ApiResponse<ProductDTO> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
         Product product = ProductMapper.toEntity(productDTO);
         Product updatedProduct = productService.updateProduct(id, product);
         ProductDTO updatedProductDTO = ProductMapper.toDTO(updatedProduct);

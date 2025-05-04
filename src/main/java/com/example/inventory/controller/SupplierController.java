@@ -11,6 +11,7 @@ import com.example.inventory.model.ApiResponse;
 import com.example.inventory.model.Supplier;
 import com.example.inventory.service.SupplierService;
 
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/suppliers")
@@ -39,7 +40,7 @@ public class SupplierController {
     }
 
      @PostMapping
-    public ApiResponse<SupplierDTO> addSupplier(@RequestBody SupplierDTO supplierDTO) {
+    public ApiResponse<SupplierDTO> addSupplier(@Valid @RequestBody SupplierDTO supplierDTO) {
         Supplier supplier = SupplierMapper.toEntity(supplierDTO);
         Supplier saveSupplier =  supplierService.addSupplier(supplier);
         SupplierDTO saveSupplierDTO = SupplierMapper.toDTO(saveSupplier);
@@ -47,7 +48,7 @@ public class SupplierController {
     }
 
     @PostMapping("/addList")
-    public ApiResponse<List<SupplierDTO>> addSuppliers(@RequestBody List<SupplierDTO> supplierDTOs) {
+    public ApiResponse<List<SupplierDTO>> addSuppliers(@Valid @RequestBody List<SupplierDTO> supplierDTOs) {
         List<Supplier> suppliers = SupplierMapper.toEntityList(supplierDTOs);
         List<Supplier> saveSuppliers = supplierService.addSuppliers(suppliers);
         List<SupplierDTO> saveSupplierDTOs = SupplierMapper.toDTOList(saveSuppliers);
@@ -56,7 +57,7 @@ public class SupplierController {
 
 
     @PutMapping("/{id}")
-    public ApiResponse<SupplierDTO> updateSupplier (@PathVariable Long id, @RequestBody SupplierDTO supplierDTO) {
+    public ApiResponse<SupplierDTO> updateSupplier (@PathVariable Long id, @Valid @RequestBody SupplierDTO supplierDTO) {
         Supplier supplier = SupplierMapper.toEntity(supplierDTO);
         Supplier updatedSupplier = supplierService.updateSupplier(id, supplier);
         SupplierDTO updatedSupplierDTO = SupplierMapper.toDTO(updatedSupplier);

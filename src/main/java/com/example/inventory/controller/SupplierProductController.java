@@ -14,6 +14,8 @@ import com.example.inventory.model.Product;
 import com.example.inventory.model.Supplier;
 import com.example.inventory.service.SupplierProductService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/product-supplier")
 public class SupplierProductController {
@@ -26,7 +28,7 @@ public class SupplierProductController {
     }
 
     @PostMapping
-    public ApiResponse<SupplierProductDTO> addSupplierWithProduct(@RequestBody SupplierProductDTO supplierProductDTO) {
+    public ApiResponse<SupplierProductDTO> addSupplierWithProduct(@Valid @RequestBody SupplierProductDTO supplierProductDTO) {
         Supplier supplier = SupplierMapper.toEntity(supplierProductDTO.getSupplier());
         Product product = ProductMapper.toEntity(supplierProductDTO.getProduct());
         Supplier savedSupplier = productSupplierService.addSupplierWithProduct(supplier, product);
@@ -37,7 +39,7 @@ public class SupplierProductController {
     }
 
     @PostMapping("/addList")
-    public ApiResponse<SupplierProductsDTO> addSupplierWithProducts(@RequestBody SupplierProductsDTO supplierProductsDTO) {
+    public ApiResponse<SupplierProductsDTO> addSupplierWithProducts(@Valid @RequestBody SupplierProductsDTO supplierProductsDTO) {
         Supplier supplier = SupplierMapper.toEntity(supplierProductsDTO.getSupplier());
         List<Product> products = ProductMapper.toEntityList(supplierProductsDTO.getProducts());
         Supplier savedSupplier = productSupplierService.addSupplierWithProducts(supplier, products);
