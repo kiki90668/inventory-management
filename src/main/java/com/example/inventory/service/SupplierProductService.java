@@ -1,5 +1,6 @@
 package com.example.inventory.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,8 @@ public class SupplierProductService {
 
         if (supplier.getId() !=null) {
             // If the supplier already exists, fetch it from the database
-            savedSupplier = supplierRepository.findById(supplier.getId()).orElseThrow(() -> new IllegalArgumentException("Supplier ID" + supplier.getId() + " not found"));
+            savedSupplier = supplierRepository.findById(supplier.getId())
+            .orElseThrow(() -> new IllegalArgumentException("Supplier ID" + supplier.getId() + " not found"));
         } else {
             // If the supplier is new, save it
             savedSupplier = supplierRepository.save(supplier);
@@ -61,6 +63,23 @@ public class SupplierProductService {
         }
         productRepository.saveAll(products);
         return savedSupplier;
+    }
+
+    public List<Product> getProductsBySupplierId (Long supplierId) {
+        Supplier supplier = supplierRepository.findById(supplierId)
+                .orElseThrow(() -> new IllegalArgumentException("Supplier ID" + supplierId + " not found"));
+        
+        return productRepository.findBySupplier(supplier);
+    }
+
+    public HashMap<Supplier, List<Product>> getAllSupplierProducts () {
+        HashMap<Supplier, List<Product>> all = new HashMap<>();
+        List<Supplier> suppliers = supplierRepository.findAll();
+        for (Supplier supplier : suppliers) {
+            List<Product> products = productRepository.findBySupplier(supplier);
+            all.put(supplier, products);
+        }
+        return all;
     }
 
 

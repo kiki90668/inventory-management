@@ -18,7 +18,7 @@ public class SupplierService {
         this.supplierRepository = supplierRepository;
     }
 
-    //
+    // This method is used to get a supplier by ID
     public Supplier getSupplierById(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("Supplier ID cannot be null");
@@ -26,10 +26,12 @@ public class SupplierService {
         return supplierRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Supplier not found"));
     }
 
+    // This method is used to get all suppliers
     public List<Supplier> getAllSuppliers() {
         return supplierRepository.findAll();
     }
 
+    // This method is used to add a new supplier
     public Supplier addSupplier(Supplier supplier) {
         if (supplier.getId() != null) {
             throw new IllegalArgumentException("Supplier ID should not be provided for new suppliers");
@@ -37,7 +39,7 @@ public class SupplierService {
         return supplierRepository.save(supplier);
     }
 
-
+    // This method is used to add multiple suppliers at once
     public List<Supplier> addSuppliers(List<Supplier> suppliers) {
         if (suppliers == null || suppliers.isEmpty()) {
             throw new IllegalArgumentException("Supplier list cannot be empty");
@@ -45,6 +47,7 @@ public class SupplierService {
         return supplierRepository.saveAll(suppliers);
     }
 
+    // This method is used to update an existing supplier
     public Supplier updateSupplier(Long id, Supplier supplier) {
         if (id == null) {
             throw new IllegalArgumentException("Supplier ID cannot be null");
