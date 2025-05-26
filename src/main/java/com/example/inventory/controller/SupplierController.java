@@ -2,7 +2,6 @@ package com.example.inventory.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.inventory.dto.SupplierDTO;
@@ -12,17 +11,16 @@ import com.example.inventory.model.Supplier;
 import com.example.inventory.service.SupplierService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/suppliers")
+@RequiredArgsConstructor
 public class SupplierController {
 
-    private SupplierService supplierService;
+    private final SupplierService supplierService;
 
-    @Autowired
-    public SupplierController(SupplierService supplierService) {
-        this.supplierService = supplierService;
-    }
+
 
     @GetMapping("/{id}")
     public ApiResponse<SupplierDTO> getSupplierById(@PathVariable Long id) {

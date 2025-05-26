@@ -3,7 +3,6 @@ package com.example.inventory.controller;
 import java.util.HashMap;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.inventory.dto.ProductDTO;
@@ -17,17 +16,15 @@ import com.example.inventory.model.Supplier;
 import com.example.inventory.service.SupplierProductService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/supplier-product")
+@RequiredArgsConstructor
 public class SupplierProductController {
 
-    private SupplierProductService supplierProductService;
-    
-    @Autowired
-    public SupplierProductController(SupplierProductService supplierProductService) {
-        this.supplierProductService = supplierProductService;
-    }
+    private final SupplierProductService supplierProductService;
+
 
     @PostMapping("/add")
     public ApiResponse<SupplierProductDTO> addSupplierWithProduct(@Valid @RequestBody SupplierProductDTO supplierProductDTO) {
@@ -71,5 +68,5 @@ public class SupplierProductController {
         return new ApiResponse<>("success", "All supplier products retrieved successfully", supplierProductsDTO);
     }
 
-    
+
  }

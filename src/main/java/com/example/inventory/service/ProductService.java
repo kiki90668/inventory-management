@@ -1,21 +1,21 @@
 package com.example.inventory.service;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import com.example.inventory.model.Product;
 import com.example.inventory.repository.ProductRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ProductService {
 
     
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    @Autowired
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+
 
 
     // Method to get a product by ID

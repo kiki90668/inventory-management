@@ -2,21 +2,21 @@ package com.example.inventory.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.example.inventory.model.Supplier;
 import com.example.inventory.repository.SupplierRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class SupplierService {
 
-    private SupplierRepository supplierRepository;
+    private final SupplierRepository supplierRepository;
 
-    @Autowired
-    public SupplierService(SupplierRepository supplierRepository) {
-        this.supplierRepository = supplierRepository;
-    }
+
 
     // This method is used to get a supplier by ID
     public Supplier getSupplierById(Long id) {

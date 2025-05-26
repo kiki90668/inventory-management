@@ -2,7 +2,7 @@ package com.example.inventory.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import com.example.inventory.dto.ProductDTO;
@@ -12,13 +12,14 @@ import com.example.inventory.model.Product;
 import com.example.inventory.service.ProductService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/products")
+@RequiredArgsConstructor
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
     // Define endpoints for CRUD operations
 

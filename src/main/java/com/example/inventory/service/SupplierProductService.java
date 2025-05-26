@@ -3,7 +3,6 @@ package com.example.inventory.service;
 import java.util.HashMap;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,17 +11,16 @@ import com.example.inventory.model.Supplier;
 import com.example.inventory.repository.ProductRepository;
 import com.example.inventory.repository.SupplierRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class SupplierProductService {
 
-    private ProductRepository productRepository;
-    private SupplierRepository supplierRepository;
+    private final ProductRepository productRepository;
+    private final SupplierRepository supplierRepository;
 
-    @Autowired
-    public SupplierProductService(ProductRepository productRepository, SupplierRepository supplierRepository) {
-        this.productRepository = productRepository;
-        this.supplierRepository = supplierRepository;
-    }
+
 
     @Transactional
     public Supplier addSupplierWithProduct (Supplier supplier, Product product) {
